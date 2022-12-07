@@ -1,0 +1,35 @@
+mysql> CREATE TABLE postac(id_postaci int not null auto_increment primary key, nazwa varchar (40), rodzaj enum('wiking', 'ptak', 'kobi), data_ur date, wiek int UNSIGNED);
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> desc postac;
++------------+---------------------------------+------+-----+---------+----------------+
+| Field      | Type                            | Null | Key | Default | Extra          |
++------------+---------------------------------+------+-----+---------+----------------+
+| id_postaci | int                             | NO   | PRI | NULL    | auto_increment |
+| nazwa      | varchar(40)                     | YES  |     | NULL    |                |
+| rodzaj     | enum('wiking','ptak','kobieta') | YES  |     | NULL    |                |
+| data_ur    | date                            | YES  |     | NULL    |                |
+| wiek       | int unsigned                    | YES  |     | NULL    |                |
++------------+---------------------------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+mysql> INSERT INTO postac VALUES (0, 'Bjorn', 'wiking', '2000-12-12', 22);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO postac VALUES (0, 'Drozd', 'ptak', '2021-12-12', 1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO postac VALUES (0, 'Tesciowa', 'kobieta', '1960-12-12',62);
+Query OK, 1 row affected (0.00 sec)
+mysql> UPDATE postac SET wiek=88 WHERE nazwa = 'Tesciowa';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from postac;
++------------+----------+---------+------------+------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek |
++------------+----------+---------+------------+------+
+|          1 | Bjorn    | wiking  | 2000-12-12 |   22 |
+|          2 | Drozd    | ptak    | 2021-12-12 |    1 |
+|          3 | Tesciowa | kobieta | 1960-12-12 |   88 |
++------------+----------+---------+------------+------+
+3 rows in set (0.00 sec)
