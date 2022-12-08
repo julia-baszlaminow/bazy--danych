@@ -29,3 +29,64 @@ SELECT ROUND(2022 - AVG(year(dataUr))) AS 'srednia wieku', rodzaj FROM kreatura 
 |           350 | malpa    |
 |           922 | Poczwara |
 +---------------+----------+
+zadanie 2
+SELECT SUM(waga * ilosc), rodzaj FROM zasob GROUP BY rodzaj;
++-------------------+--------------------+
+| SUM(waga * ilosc) | rodzaj             |
++-------------------+--------------------+
+|            239.00 | jedzenie           |
+|             13.00 | narzedzie          |
+|             61.00 | NULL               |
+|            323.00 | ubranie            |
+|             26.00 | narzedzie zbrodni  |
+|             90.00 | material budowlany |
+|              4.00 | miejsce wypoczynku |
++-------------------+--------------------+
+ SELECT AVG(waga), nazwa FROM zasob WHERE ilosc >=4 GROUP BY nazwa HAVING SUM(waga)>10;
++-----------+---------------+
+| AVG(waga) | nazwa         |
++-----------+---------------+
+| 30.000000 | skora geparda |
++-----------+---------------+
+ SELECT COUNT(DISTINCT nazwa), rodzaj, nazwa FROM zasob WHERE ilosc > 1 GROUP BY rodzaj;
++-----------------------+--------------------+-----------------+
+| COUNT(DISTINCT nazwa) | rodzaj             | nazwa           |
++-----------------------+--------------------+-----------------+
+|                     2 | NULL               | ogien do ziania |
+|                     5 | jedzenie           | kokos           |
+|                     2 | material budowlany | pnacza          |
+|                     2 | narzedzie zbrodni  | dzida           |
+|                     4 | ubranie            | buty            |
++-----------------------+--------------------+-----------------+
+zadanie 3
+SELECT kreatura.nazwa, SUM(ekwipunek.ilosc) FROM kreatura JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury GROUP BY nazwa;
++-----------+----------------------+
+| nazwa     | SUM(ekwipunek.ilosc) |
++-----------+----------------------+
+| Bjorn     |                   64 |
+| Brutal    |                    4 |
+| Astrid    |                    6 |
+| Khorad    |                    1 |
+| Ibra      |                    2 |
+| Tesciowa  |                    5 |
+| Defgard   |                   55 |
+| Bjolkolur |                   12 |
+| Drozd     |                    1 |
+| Szczeki   |                    1 |
++-----------+----------------------+
+SELECT kreatura.nazwa, GROUP_CONCAT(DISTINCT zasob.nazwa) AS zasoby FROM kreatura JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu GROUP BY kreatura.nazwa;
++-----------+---------------------------------------------------------+
+| nazwa     | zasoby                                                  |
++-----------+---------------------------------------------------------+
+| Astrid    | kokos,luk,stanik                                        |
+| Bjolkolur | deski,pnacza                                            |
+| Bjorn     | buty,hamak,kokos,lisc palmowy,siekiera,stanik,topor     |
+| Brutal    | kokos,siekiera                                          |
+| Defgard   | kiel slonia,pnacza,siekiera,skora geparda               |
+| Drozd     | stanik                                                  |
+| Ibra      | dzida,skora geparda                                     |
+| Khorad    | kiel slonia                                             |
+| Szczeki   | opos                                                    |
+| Tesciowa  | chatka na drzewie,miotla,nie wiadomo co,ogien do ziania |
++-----------+---------------------------------------------------------+
+
