@@ -5,3 +5,27 @@ SELECT AVG(waga) AS sredniawaga FROM kreatura WHERE rodzaj = 'wiking';
 +-------------+
 |     95.1111 |
 +-------------+
+SELECT AVG(waga) AS sredniawaga, COUNT(idKreatury) AS ilosc FROM kreatura GROUP BY rodzaj;
++-------------+-------+
+| sredniawaga | ilosc |
++-------------+-------+
+|     95.1111 |     9 |
+|   1050.5000 |     2 |
+|      3.0000 |     1 |
+|      2.0000 |     2 |
+|     41.2500 |     4 |
+|     32.0000 |     1 |
+|        NULL |     1 |
++-------------+-------+
+SELECT ROUND(2022 - AVG(year(dataUr))) AS 'srednia wieku', rodzaj FROM kreatura GROUP BY rodzaj;
++---------------+----------+
+| srednia wieku | rodzaj   |
++---------------+----------+
+|           352 | wiking   |
+|           347 | ryba     |
+|           345 | waz      |
+|           347 | ptak     |
+|           531 | wiedzma  |
+|           350 | malpa    |
+|           922 | Poczwara |
++---------------+----------+
