@@ -1,0 +1,7 @@
+zadanie 1 
+SELECT AVG(waga) AS sredniawaga FROM kreatura WHERE rodzaj = 'wiking';
++-------------+
+| sredniawaga |
++-------------+
+|     95.1111 |
++-------------+
