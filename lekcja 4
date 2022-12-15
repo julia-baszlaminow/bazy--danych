@@ -89,4 +89,13 @@ SELECT kreatura.nazwa, GROUP_CONCAT(DISTINCT zasob.nazwa) AS zasoby FROM kreatur
 | Szczeki   | opos                                                    |
 | Tesciowa  | chatka na drzewie,miotla,nie wiadomo co,ogien do ziania |
 +-----------+---------------------------------------------------------+
+SELECT DISTINCT kreatura.nazwa FROM kreatura JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu WHERE zasob.rodzaj = 'jedzenie' ORDER BY dataUr DESC LIMIT 5;
++---------+
+| nazwa   |
++---------+
+| Astrid  |
+| Szczeki |
+| Brutal  |
+| Bjorn   |
++---------+
 
